@@ -135,9 +135,9 @@ export default function WhatsAppWidget({ onBookAppointment }) {
           <div style={styles.chatBubble}>
             Book your appointment today and get the right orthopaedic care for your needs. At only KSH 1,500.
           </div>
-          <button style={{ ...styles.chatActionBtn, border: 'none', cursor: 'pointer' }} onClick={() => { setIsPopupVisible(false); onBookAppointment(); }}>
+          {/* <button style={{ ...styles.chatActionBtn, border: 'none', cursor: 'pointer' }} onClick={() => { setIsPopupVisible(false); onBookAppointment(); }}>
             Book for KSH 1,500
-          </button>
+          </button> */}
         </div>
       </div>
 
