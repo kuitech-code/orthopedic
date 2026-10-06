@@ -67,6 +67,7 @@ export default function ContactSection() {
       fontSize: '0.95rem',
       color: '#64748b',
       lineHeight: '1.5',
+      overflowWrap: 'anywhere',
     },
     mapContainer: {
       width: '100%',
@@ -90,7 +91,7 @@ export default function ContactSection() {
 
   return (
     <section id="contact" style={styles.section}>
-      <div style={styles.container}>
+      <div className="contact-layout" style={styles.container}>
         
         {/* Left Side: Communication channels and operational hours */}
         <div style={styles.infoBlock}>
@@ -136,7 +137,7 @@ export default function ContactSection() {
         </div>
 
         {/* Right Side: Fully Interactive Embedded Digital Map */}
-        <div style={styles.mapContainer}>
+        <div className="contact-map" style={styles.mapContainer}>
           <iframe 
             title="Nyahururu Orthopaedic Centre Location Map"
             src={mapEmbedUrl}

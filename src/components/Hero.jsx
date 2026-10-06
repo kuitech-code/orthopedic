@@ -108,13 +108,13 @@ export default function Hero({ onBookAppointment, onExploreServices }) {
               style={styles.primaryBtn} 
               onClick={onBookAppointment}
             >
-              Book an Appointment
+              Book Appointment
             </button>
             <button 
               style={styles.secondaryBtn} 
               onClick={onExploreServices}
             >
-              Explore our Services
+              Explore Services
             </button>
           </div>
         </div>

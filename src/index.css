@@ -76,6 +76,61 @@ button, a {
     width: 100% !important;
   }
 
+  .about-layout,
+  .contact-layout,
+  .service-page-container,
+  .service-row,
+  .service-info {
+    min-width: 0;
+  }
+
+  .about-layout,
+  .contact-layout,
+  .service-row {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .about-layout,
+  .contact-layout {
+    gap: 2rem !important;
+  }
+
+  .about-panel {
+    padding: 1.25rem !important;
+  }
+
+  .contact-layout > *,
+  .service-row > * {
+    min-width: 0;
+  }
+
+  .contact-map {
+    height: 340px !important;
+    min-height: 320px !important;
+  }
+
+  .contact-map iframe {
+    min-height: 320px !important;
+  }
+
+  .service-page-container {
+    padding: 2.5rem 1rem !important;
+  }
+
+  .service-page-container .service-row {
+    gap: 1.25rem !important;
+    padding: 1.25rem !important;
+  }
+
+  .service-page-container .service-media {
+    height: 220px !important;
+  }
+
+  .service-info h2,
+  .service-info p {
+    overflow-wrap: anywhere;
+  }
+
   .hero-actions {
     flex-direction: column;
     align-items: stretch;

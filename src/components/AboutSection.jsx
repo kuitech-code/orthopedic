@@ -71,7 +71,7 @@ export default function AboutSection() {
 
   return (
     <section id="about" style={styles.section}>
-      <div style={styles.container}>
+      <div className="about-layout" style={styles.container}>
         {/* Left Side: Short Text Narrative */}
         <div style={styles.leftColumn}>
           <span style={styles.tagline}>Our Mission</span>
@@ -88,7 +88,7 @@ export default function AboutSection() {
         </div>
 
         {/* Right Side: Key Care Pillars (Placeholders to avoid manufactured claims) */}
-        <div style={styles.rightColumn}>
+        <div className="about-panel" style={styles.rightColumn}>
           <img src={aboutImage} alt="Nyahururu Orthopaedic Centre" style={styles.aboutImage} />
           <div>
             <h3 style={styles.pillarTitle}>Evidence-Based Care</h3>

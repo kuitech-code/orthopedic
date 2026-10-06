@@ -161,7 +161,7 @@ export default function ServicesPage({ onBookAppointment }) {
 
 
   return (
-    <div style={styles.container}>
+    <div className="service-page-container" style={styles.container}>
       {/* Page Header */}
       <div style={styles.heroArea}>
         <span style={styles.tagline}>Clinical Services</span>
@@ -174,9 +174,9 @@ export default function ServicesPage({ onBookAppointment }) {
       {/* Services Breakdown List */}
       <div style={styles.listLayout}>
         {detailedServices.map((service, index) => (
-          <div key={index} style={styles.serviceRow}>
+          <div key={index} className="service-row" style={styles.serviceRow}>
             {/* Left: Info */}
-            <div style={styles.infoPane}>
+            <div className="service-info" style={styles.infoPane}>
               <h2 style={styles.serviceName}>{service.name}</h2>
               <p style={styles.serviceDesc}>{service.desc}</p>
               <div style={styles.audienceBox}>
@@ -187,7 +187,7 @@ export default function ServicesPage({ onBookAppointment }) {
             </div>
 
             {/* Right: Graphic Media Area */}
-            <div style={styles.imagePlaceholder}>
+            <div className="service-media" style={styles.imagePlaceholder}>
               <img src={service.image} alt={service.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
           </div>
@@ -201,7 +201,7 @@ export default function ServicesPage({ onBookAppointment }) {
           Schedule a direct assessment framework to begin mapping out an objective, evidence-based physical recovery road.
         </p>
         <button style={styles.ctaBtn} onClick={onBookAppointment}>
-          Book an Appointment Now
+          Book Now
         </button>
       </div>
     </div>
