@@ -160,7 +160,7 @@ export default function BookingPage() {
             required 
             value={formData.fullName}
             onChange={handleChange}
-            placeholder="John Doe"
+            placeholder="John Karanja"
           />
         </div>
 

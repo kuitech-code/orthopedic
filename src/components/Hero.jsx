@@ -76,25 +76,20 @@ export default function Hero({ onBookAppointment, onExploreServices }) {
       transition: 'all 0.2s',
     },
     imageContainer: {
-      display: 'flex',
-      justifyContent: 'center',
-      position: 'relative',
-    },
-    graphicPlaceholder: {
       width: '100%',
       aspectRatio: '4/3',
-      backgroundColor: '#ffffff',
-      border: '1px solid #e2e8f0',
-      borderRadius: '16px',
-      boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.05)',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: '2rem',
-      color: '#94a3b8',
-      textAlign: 'center',
-    }
+      position: 'relative',
+      overflow: 'hidden',
+      borderRadius: '8px',
+      boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.08)',
+    },
+    heroPhoto: {
+      display: 'block',
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      objectPosition: 'center',
+    },
   };
 
   return (
@@ -124,9 +119,8 @@ export default function Hero({ onBookAppointment, onExploreServices }) {
           </div>
         </div>
 
-        {/* Right Side: Clean Tech-Medical Placeholder Image Area */}
         <div style={styles.imageContainer}>
-          <img src={heroImage} alt="Orthopaedic supports and mobility products" style={{ ...styles.graphicPlaceholder, objectFit: 'cover' }} />
+          <img src={heroImage} alt="Orthopaedic supports and mobility products" style={styles.heroPhoto} />
         </div>
       </div>
     </section>

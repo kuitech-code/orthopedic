@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
-import productImage from '../assets/12.jpeg';
-import braceImage from '../assets/9.jpeg';
-import mobilityImage from '../assets/13.jpeg';
-import rehabImage from '../assets/2.jpeg';
+import productData from '../data.js';
+
+const categories = [...new Set(productData.map((item) => item.category || 'Uncategorized'))].sort();
+const brands = [...new Set(productData.map((item) => item.brand).filter(Boolean))].sort();
+const priceFormatter = new Intl.NumberFormat('en-KE', {
+  style: 'currency',
+  currency: 'KES',
+  maximumFractionDigits: 0,
+});
 
 export default function ProductsPage() {
   const [activeCategory, setActiveCategory] = useState('all');
+  const [activeBrand, setActiveBrand] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const styles = {
     container: {
@@ -44,32 +51,31 @@ export default function ProductsPage() {
     /* E-commerce Category Filter Menu */
     filterTabs: {
       display: 'flex',
-      justifyContent: 'center',
+      justifyContent: 'flex-start',
       gap: '0.75rem',
       flexWrap: 'wrap',
       borderBottom: '1px solid #e2e8f0',
       paddingBottom: '1.5rem',
     },
-    tabBtn: (isActive) => ({
-      padding: '0.6rem 1.5rem',
-      borderRadius: '8px',
-      fontSize: '0.9rem',
-      fontWeight: '600',
-      cursor: 'pointer',
-      border: isActive ? '1px solid #0f172a' : '1px solid #e2e8f0',
-      backgroundColor: isActive ? '#0f172a' : '#ffffff',
-      color: isActive ? '#ffffff' : '#475569',
-      transition: 'all 0.2s ease',
-    }),
+    filterControl: {
+      flex: '1 1 220px',
+      minWidth: 0,
+      padding: '0.75rem 0.9rem',
+      border: '1px solid #cbd5e1',
+      borderRadius: '6px',
+      backgroundColor: '#ffffff',
+      color: '#334155',
+      fontSize: '0.95rem',
+    },
     /* Premium E-commerce Grid Layout */
     grid: {
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-      gap: '2.5rem',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))',
+      gap: '1.25rem',
     },
     card: {
       backgroundColor: '#ffffff',
-      borderRadius: '16px',
+      borderRadius: '8px',
       overflow: 'hidden',
       display: 'flex',
       flexDirection: 'column',
@@ -78,7 +84,7 @@ export default function ProductsPage() {
       boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01)',
     },
     imageContainer: {
-      height: '280px',
+      height: '240px',
       backgroundColor: '#f8fafc',
       display: 'flex',
       flexDirection: 'column',
@@ -108,32 +114,47 @@ export default function ProductsPage() {
       flexGrow: 1,
     },
     metaRow: {
-      display: 'flex',
-      justifyContent: 'space-between',
+      display: 'grid',
+      gridTemplateColumns: 'minmax(0, 1fr) auto',
       alignItems: 'center',
+      gap: '0.5rem',
+      minHeight: '2.5rem',
     },
     categoryTag: {
-      fontSize: '0.75rem',
+      display: '-webkit-box',
+      WebkitBoxOrient: 'vertical',
+      WebkitLineClamp: 2,
+      overflow: 'hidden',
+      fontSize: '0.7rem',
       fontWeight: '700',
       color: '#64748b',
       textTransform: 'uppercase',
-      letterSpacing: '1px',
+      letterSpacing: '0.04em',
+      lineHeight: '1.35',
+    },
+    brandTag: {
+      fontSize: '0.8rem',
+      color: '#64748b',
+      minHeight: '1.2rem',
     },
     priceTag: {
-      fontSize: '1.5rem',
+      fontSize: '1.25rem',
       fontWeight: '800',
-      color: '#0f172a', /* High-end fashion or tech style typography pricing */
+      color: '#0f172a',
+      whiteSpace: 'nowrap',
+      fontVariantNumeric: 'tabular-nums',
     },
     prodTitle: {
-      fontSize: '1.35rem',
+      fontSize: '1.05rem',
       fontWeight: '700',
       color: '#0f172a',
-      lineHeight: '1.2',
+      lineHeight: '1.35',
     },
     description: {
-      fontSize: '0.925rem',
-      color: '#64748b',
-      lineHeight: '1.5',
+      fontSize: '1rem',
+      color: '#0f172a',
+      lineHeight: '1.4',
+      minHeight: '2.8rem',
     },
     /* E-commerce Technical Feature Specs Row */
     specRow: {
@@ -167,25 +188,38 @@ export default function ProductsPage() {
       gap: '0.5rem',
       boxShadow: '0 4px 6px -1px rgba(14, 165, 233, 0.15)',
       transition: 'background-color 0.2s, transform 0.1s',
-    }
+    },
+    imagePlaceholder: {
+      color: '#64748b',
+      fontSize: '0.9rem',
+    },
+    resultCount: {
+      color: '#64748b',
+      fontSize: '0.9rem',
+    },
+    emptyState: {
+      gridColumn: '1 / -1',
+      padding: '3rem 1rem',
+      textAlign: 'center',
+      color: '#64748b',
+    },
   };
 
-  // Upgraded structured inventory data complete with formal currency blocks & variations [7]
-  const storefrontProducts = [
-    { id: 1, name: 'Elite Patella Stabilizer Brace', price: 'KSH850.00', category: 'braces', specs: ['Medical Grade', 'Breathable', 'S/M/L/XL'], desc: 'Anatomically molded framework featuring dynamic compression side-spring stabilizers for patellar tracking support.', image: braceImage },
-    { id: 2, name: 'Premium Rigid Lumbar Support', price: 'KSH1200.00', category: 'braces', specs: ['Steel Stays', 'Dual Straps', 'Adjustable'], desc: 'Ergonomic structural back brace reinforced with medical steel stays to comfortably reduce acute lumbar fatigue vector loads.', image: productImage },
-    { id: 3, name: 'Anatomical Wrist Split Brace', price: 'KSH450.00', category: 'braces', specs: ['Removable Splint', 'Left/Right'], desc: 'Immobilization support equipped with an aluminum lower pallet guard engineered for neutral carpal-tunnel tracking alignment.', image: braceImage },
-    { id: 4, name: 'Ergonomic Crutches (Shock-Absorbing)', price: 'KSH1100.00', category: 'mobility', specs: ['Aluminum', 'Height-Tuned', 'Pair'], desc: 'Lightweight double-extruded structural poles with embedded safety underarm springs and anti-skid rubber traction feet.', image: mobilityImage },
-    { id: 5, name: 'All-Terrain Rolling Walker Frame', price: 'KSH2400.00', category: 'mobility', specs: ['8" Wheels', 'Brakes', 'Max 130kg'], desc: 'Heavy-duty fluid mobility system built with double action speed-clamp security brakes and a wide padded resting bench panel.', image: mobilityImage },
-    { id: 6, name: 'Clinical Therapy Exercise Kit', price: 'KSH350.00', category: 'rehab', specs: ['Latex-Free', '5 Resistance Levels'], desc: 'Professional orthopedic progressive band loops calibrated directly for safe targeted isolation and secondary joint therapy routines.', image: rehabImage },
-  ];
+  const filteredItems = productData.filter((item) => {
+    const itemCategory = item.category || 'Uncategorized';
+    const matchesCategory = activeCategory === 'all' || itemCategory === activeCategory;
+    const matchesBrand = activeBrand === 'all' || item.brand === activeBrand;
+    const searchableText = `${item.description} ${item.brand} ${item.category}`.toLowerCase();
+    const matchesSearch = searchableText.includes(searchQuery.trim().toLowerCase());
 
-  const filteredItems = activeCategory === 'all' 
-    ? storefrontProducts 
-    : storefrontProducts.filter(p => p.category === activeCategory);
+    return matchesCategory && matchesBrand && matchesSearch;
+  });
 
-  const handleCheckoutIntent = (productName, price) => {
-    const formattedMsg = encodeURIComponent(`Hello Clinic! I am on your website catalog and want to purchase the "${productName}" listed for ${price}. Can you confirm sizing and pickup hours?`);
+  const handleCheckoutIntent = (item) => {
+    const priceMessage = item.retail == null
+      ? 'with no listed retail price'
+      : `listed for ${priceFormatter.format(item.retail)}`;
+    const formattedMsg = encodeURIComponent(`Hello Clinic! I am interested in "${item.description}", ${priceMessage}. Can you confirm availability?`);
     window.open(`https://wa.me/254741194959?text=${formattedMsg}`, '_blank');
   };
 
@@ -196,20 +230,43 @@ export default function ProductsPage() {
         <span style={styles.tagline}>Clinic Dispensary</span>
         <h1 style={styles.title}>Orthopedic & Medical Products</h1>
         <p style={styles.subtitle}>
-          Premium, clinically verified rehabilitation devices and bracing frameworks. Select your sizing variants and click below to secure item verification with our active stock desk instantly.
+          Browse orthopedic supports, mobility aids and rehabilitation products available from our clinic.
         </p>
       </div>
 
-      {/* Modern Filter Toggle Elements */}
       <div style={styles.filterTabs}>
-        <button style={styles.tabBtn(activeCategory === 'all')} onClick={() => setActiveCategory('all')}>All Gear</button>
-        <button style={styles.tabBtn(activeCategory === 'braces')} onClick={() => setActiveCategory('braces')}>Supports & Braces</button>
-        <button style={styles.tabBtn(activeCategory === 'mobility')} onClick={() => setActiveCategory('mobility')}>Mobility & Walkers</button>
-        <button style={styles.tabBtn(activeCategory === 'rehab')} onClick={() => setActiveCategory('rehab')}>Physical Rehab</button>
+        <input
+          type="search"
+          aria-label="Search products"
+          placeholder="Search products or brands"
+          value={searchQuery}
+          onChange={(event) => setSearchQuery(event.target.value)}
+          style={styles.filterControl}
+        />
+        <select
+          aria-label="Filter by category"
+          value={activeCategory}
+          onChange={(event) => setActiveCategory(event.target.value)}
+          style={styles.filterControl}
+        >
+          <option value="all">All categories</option>
+          {categories.map((category) => <option key={category} value={category}>{category}</option>)}
+        </select>
+        <select
+          aria-label="Filter by brand"
+          value={activeBrand}
+          onChange={(event) => setActiveBrand(event.target.value)}
+          style={styles.filterControl}
+        >
+          <option value="all">All brands</option>
+          {brands.map((brand) => <option key={brand} value={brand}>{brand}</option>)}
+        </select>
       </div>
 
-      {/* Grid Canvas System */}
+      <p style={styles.resultCount}>{filteredItems.length} products</p>
+
       <div style={styles.grid}>
+        {filteredItems.length === 0 && <p style={styles.emptyState}>No products match your search.</p>}
         {filteredItems.map((item) => (
           <div 
             key={item.id} 
@@ -223,33 +280,36 @@ export default function ProductsPage() {
               e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.02)';
             }}
           >
-            {/* Visual Thumbnail Area */}
             <div style={styles.imageContainer}>
-              <span style={styles.badge}>In Stock</span>
-              <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              {item.image ? (
+                <img
+                  src={`${import.meta.env.BASE_URL}products/${item.image}`}
+                  alt={item.description}
+                  width="480"
+                  height="360"
+                  loading="lazy"
+                  decoding="async"
+                  style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '1rem', boxSizing: 'border-box' }}
+                />
+              ) : (
+                <span style={styles.imagePlaceholder}>Photo unavailable</span>
+              )}
             </div>
 
-            {/* Shopping Specifications Area */}
             <div style={styles.infoArea}>
               <div style={styles.metaRow}>
-                <span style={styles.categoryTag}>{item.category}</span>
-                <span style={styles.priceTag}>{item.price}</span>
+                <span style={styles.categoryTag}>{item.category || 'Uncategorized'}</span>
+                <span style={styles.priceTag}>
+                  {item.retail == null ? 'Contact for price' : priceFormatter.format(item.retail)}
+                </span>
               </div>
               
-              <h2 style={styles.prodTitle}>{item.name}</h2>
-              <p style={styles.description}>{item.desc}</p>
-              
-              {/* Product Specifications Tags Row */}
-              <div style={styles.specRow}>
-                {item.specs.map((spec, sIdx) => (
-                  <span key={sIdx} style={styles.specTag}>{spec}</span>
-                ))}
-              </div>
+              <h2 style={styles.prodTitle}>{item.description}</h2>
+              <p style={styles.brandTag}>{item.brand || ' '}</p>
 
-              {/* Order/Enquiry Action Switch */}
               <button 
                 style={styles.buyBtn}
-                onClick={() => handleCheckoutIntent(item.name, item.price)}
+                onClick={() => handleCheckoutIntent(item)}
                 onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#0284c7'}
                 onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#0ea5e9'}
               >
