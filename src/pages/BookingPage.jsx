@@ -13,7 +13,7 @@ export default function BookingPage() {
 
   const styles = {
     container: {
-      maxWidth: '600px', /* Centered, compact layout optimized for forms */
+      maxWidth: '600px',
       margin: '0 auto',
       padding: '4rem 2rem',
       display: 'flex',
@@ -117,6 +117,8 @@ export default function BookingPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const whatsappNumber = '254111707733';
+
     // Format the form details neatly for WhatsApp reading
     const messageText = `New Appointment Request\n\n` +
       `Name: ${formData.fullName}\n` +
@@ -127,10 +129,8 @@ export default function BookingPage() {
       `Notes: ${formData.notes || 'None'}`;
 
     const encodedMessage = encodeURIComponent(messageText);
-    
-    // Replace with the clinic's verified WhatsApp number later
-    const whatsappLink = `https://wa.me{encodedMessage}`;
-    
+    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
     // Open in a new tab safely
     window.open(whatsappLink, '_blank');
   };
