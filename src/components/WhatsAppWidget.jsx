@@ -20,7 +20,7 @@ export default function WhatsAppWidget({ onBookAppointment }) {
     },
     {
       id: 'location',
-      label: '📍 Location & Clinic Hours',
+      label: 'Location & Clinic Hours',
       message: "Hello! Where is your clinic located in Nyahururu, and what are your working hours?"
     }
   ];
