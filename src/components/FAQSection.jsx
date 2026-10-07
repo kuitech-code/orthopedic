@@ -121,7 +121,7 @@ export default function FAQSection() {
     },
     {
       question: "How can I contact the clinic?",
-      answer: "You can reach us by phone on or WhatsApp 0741194959. You can also use the contact information provided on our website to enquire about appointments, services and products."
+      answer: "You can reach us by phone or WhatsApp on 0111707733. You can also use the contact information provided on our website to enquire about appointments, services and products."
     },
     {
       question: "What are your clinic hours?",

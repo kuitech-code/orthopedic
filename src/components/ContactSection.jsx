@@ -118,7 +118,7 @@ export default function ContactSection() {
               <img src={phoneIcon} alt="" style={styles.iconWrapper} />
               <div>
                 <h3 style={styles.itemTitle}>Direct Contact</h3>
-                <p style={styles.itemValue}>Phone/Whatsapp: +254 741194959</p>
+                <p style={styles.itemValue}>Phone/Whatsapp: +254 111707733</p>
                 {/* <p style={styles.itemValue}>WhatsApp Support Available</p> */}
                 <p style={styles.itemValue}>Email: info@nyahururuortho.com</p>
               </div>

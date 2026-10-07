@@ -127,8 +127,8 @@ export default function Footer({ setCurrentPage, onNavigateToSection }) {
         <div style={styles.col}>
           <h3 style={styles.heading}>Contact Channels</h3>
           <div style={styles.linkList}>
-            <div style={styles.contactRow}><img src={phoneIcon} alt="" style={styles.contactIcon} /><span>Phone: +254741194959</span></div>
-            <div style={styles.contactRow}><img src={whatsappIcon} alt="" style={styles.contactIcon} /><span>WhatsApp: +254741194959</span></div>
+            <div style={styles.contactRow}><img src={phoneIcon} alt="" style={styles.contactIcon} /><span>Phone: +254111707733</span></div>
+            <div style={styles.contactRow}><img src={whatsappIcon} alt="" style={styles.contactIcon} /><span>WhatsApp: +254111707733</span></div>
             <div style={styles.contactRow}><img src={mailIcon} alt="" style={styles.contactIcon} /><span>Email: info@orthopedicclinic.com</span></div>
           </div>
         </div>
@@ -151,7 +151,7 @@ export default function Footer({ setCurrentPage, onNavigateToSection }) {
       <div style={styles.bottomBar}>
         <p>&copy; {new Date().getFullYear()} Orthopedic Clinic. All medical information displayed is strictly for informational parameters.</p>
         <div style={{ display: 'flex', gap: '1.5rem' }}>
-          <p>Made by <a href="whatsapp://send?phone=+254741194959" style={{ color: '#80afc5a2', textDecoration: 'none' }}>KuiTech</a></p>
+          <p>Made by <a href="whatsapp://send?phone=+254111707733" style={{ color: '#80afc5a2', textDecoration: 'none' }}>KuiTech</a></p>
         </div>
       </div>
     </footer>
