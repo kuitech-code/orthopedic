@@ -1,5 +1,4 @@
 import React from 'react';
-import servicesImage from '../assets/services.jpg';
 import consultationImage from '../assets/11.jpeg';
 import injuryImage from '../assets/1.jpeg';
 import sportsImage from '../assets/2.jpeg';

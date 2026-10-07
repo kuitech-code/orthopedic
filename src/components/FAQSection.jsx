@@ -7,7 +7,7 @@ export default function FAQSection() {
   const styles = {
     section: {
       padding: '6rem 2rem',
-      backgroundColor: '#ffffff',
+      backgroundColor: '#f1f5f9',
       display: 'flex',
       justifyContent: 'center',
     },
@@ -101,7 +101,7 @@ export default function FAQSection() {
     },
     {
       question: "Do I need a formal doctor referral to book an orthopedic consultation?",
-      answer: "No, a formal medical referral is not strictly mandatory to schedule an initial diagnostic evaluation at our clinic. However, if your private health insurance provider requires a general practitioner referral for specialist coverage, please check your plan guidelines prior to your visit."
+      answer: "No, a formal medical referral is not strictly mandatory to schedule an initial diagnostic evaluation at our clinic. However, if you have a referral from your primary care physician or another specialist, please bring it along to your appointment. It can provide valuable context for our orthopedic team and help us better understand your medical history."
     },
     {
       question: "What should I bring along to my first orthopedic evaluation?",
@@ -121,16 +121,16 @@ export default function FAQSection() {
     },
     {
       question: "How can I contact the clinic?",
-      answer: "You can reach us by phone or WhatsApp on 0111707733. You can also use the contact information provided on our website to enquire about appointments, services and products."
+      answer: "You can reach the clinic at +254 111707733 or +254 140559090. You can also use the contact information provided on our website to enquire about appointments, services and products."
     },
     {
       question: "What are your clinic hours?",
-      answer: "Our clinic operates from Monday to Friday, 8:00 AM to 5:00 PM. We are closed on weekends and public holidays. Please call ahead to confirm availability or schedule an appointment."
-    },
-    {
-      question: "Do you accept insurance?",
-      answer: "Yes, we accept a variety of private health insurance plans. Please contact our clinic directly to confirm whether your specific insurance provider is accepted and to understand any coverage requirements."
+      answer: "Our clinic is open Monday to Friday from 8:00 AM to 5:00 PM and Saturday from 8:00 AM to 12:00 PM. We are closed on Sundays."
     }
+    // ,{
+    //   question: "Do you accept insurance?",
+    //   answer: "Yes, we accept a variety of private health insurance plans. Please contact our clinic directly to confirm whether your specific insurance provider is accepted and to understand any coverage requirements."
+    // }
   ];
 
   const toggleItem = (index) => {

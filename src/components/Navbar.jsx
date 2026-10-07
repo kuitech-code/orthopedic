@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import logo from '../assets/Ortho-Logo.png';
 
 export default function Navbar({ currentPage, setCurrentPage, onNavigateToSection }) {
   // Track if mobile slide-out menu is active
@@ -18,18 +19,17 @@ export default function Navbar({ currentPage, setCurrentPage, onNavigateToSectio
       boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.05)',
     },
     logo: {
-      fontSize: '1.25rem',
-      fontWeight: '800',
-      color: '#1e293b',
       cursor: 'pointer',
-      letterSpacing: '-0.5px',
       display: 'flex',
       alignItems: 'center',
-      gap: '0.5rem',
       zIndex: 1001, /* Stay above sliding canvas */
     },
-    logoIcon: {
-      color: '#0ea5e9',
+    logoImage: {
+      display: 'block',
+      width: 'min(220px, 42vw)',
+      height: '69px',
+      objectFit: 'contain',
+      objectPosition: 'left center',
     },
     /* Desktop Navigation Link Cluster */
     desktopNav: {
@@ -121,8 +121,7 @@ export default function Navbar({ currentPage, setCurrentPage, onNavigateToSectio
     <header style={styles.header}>
       {/* Brand Identity */}
       <div style={styles.logo} onClick={() => handleNavClick('home')}>
-        <span style={styles.logoIcon}>✦</span>
-        <span>Orthopedic<span style={{ fontWeight: '400', color: '#64748b' }}>Clinic</span></span>
+        <img src={logo} alt="Nyahururu Orthopaedic Centre" style={styles.logoImage} />
       </div>
 
       {/* DESKTOP LINKS (Hidden on mobile via CSS) */}

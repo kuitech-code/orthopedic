@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 
 export default function InsuranceStrip() {
@@ -37,7 +38,7 @@ export default function InsuranceStrip() {
     logoPlaceholder: {
       fontSize: '1.15rem',
       fontWeight: '700',
-      color: '#f8f9facc', /* High-end tech/medical grayscale branding look */
+      color: '#f8f9facc',
       letterSpacing: '0.5px',
       display: 'flex',
       alignItems: 'center',
@@ -76,3 +77,4 @@ export default function InsuranceStrip() {
     </section>
   );
 }
+*/

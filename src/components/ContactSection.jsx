@@ -119,6 +119,7 @@ export default function ContactSection() {
               <div>
                 <h3 style={styles.itemTitle}>Direct Contact</h3>
                 <p style={styles.itemValue}>Phone/Whatsapp: +254 111707733</p>
+                <p style={styles.itemValue}>Additional phone: +254 140559090</p>
                 {/* <p style={styles.itemValue}>WhatsApp Support Available</p> */}
                 <p style={styles.itemValue}>Email: info@nyahururuortho.com</p>
               </div>
@@ -129,8 +130,8 @@ export default function ContactSection() {
               <div>
                 <h3 style={styles.itemTitle}>Operational Hours</h3>
                 <p style={styles.itemValue}>Monday – Friday: 8:00 AM – 5:00 PM</p>
-                <p style={styles.itemValue}>Saturday: 9:00 AM – 1:00 PM</p>
-                <p style={styles.itemValue}>Sunday: Closed / Emergency On-Call Only</p>
+                <p style={styles.itemValue}>Saturday: 8:00 AM – 12:00 PM</p>
+                <p style={styles.itemValue}>Sunday: Closed</p>
               </div>
             </div>
           </div>

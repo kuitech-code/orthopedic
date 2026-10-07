@@ -7,7 +7,7 @@ import AboutSection from './components/AboutSection';
 // import ServicesPreview from './components/ServicesPreview';
 // import ProductsPreview from './components/ProductsPreview';
 import FAQSection from './components/FAQSection';
-import InsuranceStrip from './components/InsuranceStrip';
+// import InsuranceStrip from './components/InsuranceStrip';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import WhatsAppWidget from './components/WhatsAppWidget';
@@ -63,7 +63,7 @@ export default function App() {
             {/* <ServicesPreview onViewAllServices={() => setCurrentPage('services')} /> */}
             {/* <ProductsPreview onViewAllProducts={() => setCurrentPage('products')} /> */}
             <FAQSection />
-            <InsuranceStrip />
+            {/* <InsuranceStrip /> */}
             <ContactSection />
 
           </div>
