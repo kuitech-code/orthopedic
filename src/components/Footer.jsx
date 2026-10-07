@@ -151,7 +151,7 @@ export default function Footer({ setCurrentPage, onNavigateToSection }) {
       <div style={styles.bottomBar}>
         <p>&copy; {new Date().getFullYear()} Orthopedic Clinic. All medical information displayed is strictly for informational parameters.</p>
         <div style={{ display: 'flex', gap: '1.5rem' }}>
-          <p>Made by <a href="https://wa.me/?phone=+254741194959" style={{ color: '#80afc5a2', textDecoration: 'none' }}>KuiTech</a></p>
+          <p>Made by <a href="whatsapp://send?phone=+254741194959" style={{ color: '#80afc5a2', textDecoration: 'none' }}>KuiTech</a></p>
         </div>
       </div>
     </footer>
