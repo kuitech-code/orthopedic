@@ -18,6 +18,7 @@ export default function BookingPage() {
       padding: '4rem 2rem',
       display: 'flex',
       flexDirection: 'column',
+      backgroundColor: '#f8fafc',
       gap: '2.5rem',
     },
     headerArea: {

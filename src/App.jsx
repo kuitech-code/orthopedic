@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ValueStrip from './components/ValueStrip';
 import AboutSection from './components/AboutSection';
+import FeaturedProducts from './components/FeaturedProducts';
 // import ServicesPreview from './components/ServicesPreview';
 // import ProductsPreview from './components/ProductsPreview';
 import FAQSection from './components/FAQSection';
@@ -57,11 +58,10 @@ export default function App() {
 
         {currentPage === 'home' && (
           <div>
-            <Hero onBookAppointment={() => setCurrentPage('book')} onExploreServices={() => setCurrentPage('services')} />
-            <ValueStrip />
+            <Hero onBookAppointment={() => setCurrentPage('book')} onExploreServices={() => setCurrentPage('services')} />            
+            <FeaturedProducts onOpenProducts={() => setCurrentPage('products')} />
             <AboutSection />
-            {/* <ServicesPreview onViewAllServices={() => setCurrentPage('services')} /> */}
-            {/* <ProductsPreview onViewAllProducts={() => setCurrentPage('products')} /> */}
+            <ValueStrip />
             <FAQSection />
             {/* <InsuranceStrip /> */}
             <ContactSection />
