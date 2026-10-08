@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
-import productData from '../data.js';
+import { productData } from '../data.js';
 
-const categories = [...new Set(productData.map((item) => item.category || 'Uncategorized'))].sort();
-const brands = [...new Set(productData.map((item) => item.brand).filter(Boolean))].sort();
+const categories = [...new Set(productData.flatMap((item) => item.categories?.length ? item.categories : [item.category || 'Uncategorized']))].sort();
+const brands = [...new Set(productData.flatMap((item) => item.brands?.length ? item.brands : [item.brand]).filter(Boolean))].sort();
 const priceFormatter = new Intl.NumberFormat('en-KE', {
   style: 'currency',
   currency: 'KES',
   maximumFractionDigits: 0,
 });
+
+const formatProductPrice = (item) => {
+  const minimum = item.priceMin ?? item.retail;
+  const maximum = item.priceMax ?? item.retail;
+  if (minimum == null) return 'Contact for price';
+  if (maximum != null && maximum !== minimum) {
+    return `${priceFormatter.format(minimum)} - ${priceFormatter.format(maximum)}`;
+  }
+  return priceFormatter.format(minimum);
+};
 
 export default function ProductsPage() {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -206,21 +216,30 @@ export default function ProductsPage() {
   };
 
   const filteredItems = productData.filter((item) => {
-    const itemCategory = item.category || 'Uncategorized';
-    const matchesCategory = activeCategory === 'all' || itemCategory === activeCategory;
-    const matchesBrand = activeBrand === 'all' || item.brand === activeBrand;
-    const searchableText = `${item.description} ${item.brand} ${item.category}`.toLowerCase();
+    const itemCategories = item.categories?.length ? item.categories : [item.category || 'Uncategorized'];
+    const itemBrands = item.brands?.length ? item.brands : [item.brand];
+    const matchesCategory = activeCategory === 'all' || itemCategories.includes(activeCategory);
+    const matchesBrand = activeBrand === 'all' || itemBrands.includes(activeBrand);
+    const variantText = (item.variants || []).map((variant) => `${variant.sku} ${variant.size}`).join(' ');
+    const searchableText = `${item.description} ${itemBrands.join(' ')} ${itemCategories.join(' ')} ${variantText}`.toLowerCase();
     const matchesSearch = searchableText.includes(searchQuery.trim().toLowerCase());
 
     return matchesCategory && matchesBrand && matchesSearch;
   });
 
   const handleCheckoutIntent = (item) => {
-    const priceMessage = item.retail == null
-      ? 'with no listed retail price'
-      : `listed for ${priceFormatter.format(item.retail)}`;
-    const formattedMsg = encodeURIComponent(`Hello Clinic! I am interested in "${item.description}", ${priceMessage}. Can you confirm availability?`);
-    window.open(`https://wa.me/254741194959?text=${formattedMsg}`, '_blank');
+    const priceMessage = item.priceMin == null
+      ? 'no CASH PRICE + ZONE F TRANSPORT is listed'
+      : `CASH PRICE + ZONE F TRANSPORT: ${formatProductPrice(item)}`;
+    const options = (item.variants || []).map((variant) => {
+      const label = variant.size || variant.sku;
+      return label ? `${label}: ${variant.retail == null ? 'Contact for price' : priceFormatter.format(variant.retail)}` : '';
+    }).filter(Boolean);
+    const optionMessage = options.length > 1 || item.variants?.some((variant) => variant.size)
+      ? ` Available sizes and prices: ${options.join(', ')}.`
+      : '';
+    const formattedMsg = encodeURIComponent(`Hello! I am interested in "${item.description}". ${priceMessage}.${optionMessage} Can you please confirm availability?`);
+    window.open(`https://wa.me/254111707733?text=${formattedMsg}`, '_blank');
   };
 
   return (
@@ -300,12 +319,21 @@ export default function ProductsPage() {
               <div style={styles.metaRow}>
                 <span style={styles.categoryTag}>{item.category || 'Uncategorized'}</span>
                 <span style={styles.priceTag}>
-                  {item.retail == null ? 'Contact for price' : priceFormatter.format(item.retail)}
+                  {formatProductPrice(item)}
                 </span>
               </div>
               
               <h2 style={styles.prodTitle}>{item.description}</h2>
               <p style={styles.brandTag}>{item.brand || ' '}</p>
+              {(item.variants?.length > 1 || item.variants?.some((variant) => variant.size)) && (
+                <div style={styles.specRow}>
+                  {item.variants.map((variant) => {
+                    const label = variant.size || variant.sku;
+                    const price = variant.retail == null ? 'Contact for price' : priceFormatter.format(variant.retail);
+                    return <span key={`${variant.sku}-${variant.size}`} style={styles.specTag}>{label ? `${label}: ${price}` : price}</span>;
+                  })}
+                </div>
+              )}
 
               <button 
                 style={styles.buyBtn}

@@ -2,20 +2,29 @@ import React from 'react';
 import { productData } from '../data.js';
 import './FeaturedProducts.css';
 
-const featuredProducts = productData.reduce((featured, product) => {
-  if (!product.image || featured.some((item) => item.category === product.category)) {
-    return featured;
-  }
-
-  featured.push(product);
-  return featured;
-}, []).slice(0, 4);
+const featuredProductIds = [
+  'CA 856L L',
+  'JL 925 L S',
+  'CA 811 L',
+  'CA 811L 5',
+];
+const featuredProducts = featuredProductIds
+  .map((id) => productData.find((product) => product.id === id))
+  .filter((product) => product && product.image);
 
 const priceFormatter = new Intl.NumberFormat('en-KE', {
   style: 'currency',
   currency: 'KES',
   maximumFractionDigits: 0,
 });
+
+const formatProductPrice = (product) => {
+  if (product.priceMin == null) return 'Contact for price';
+  if (product.priceMax !== product.priceMin) {
+    return `${priceFormatter.format(product.priceMin)} - ${priceFormatter.format(product.priceMax)}`;
+  }
+  return priceFormatter.format(product.priceMin);
+};
 
 export default function FeaturedProducts({ onOpenProducts }) {
   return (
@@ -52,7 +61,7 @@ export default function FeaturedProducts({ onOpenProducts }) {
                 <span className="featured-products__category">{product.category}</span>
                 <span className="featured-products__name">{product.description}</span>
                 <span className="featured-products__price">
-                  {product.retail == null ? 'Contact for price' : priceFormatter.format(product.retail)}
+                  {formatProductPrice(product)}
                 </span>
               </span>
             </button>
