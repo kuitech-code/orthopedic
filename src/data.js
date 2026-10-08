@@ -4459,7 +4459,7 @@ export const productData = [
         "brands":  [
 
                    ],
-        "image":  "image18.jpg",
+        "image":  "image18.png",
         "retail":  2700,
         "priceMin":  2700,
         "priceMax":  2700,
@@ -4484,7 +4484,7 @@ export const productData = [
         "brands":  [
 
                    ],
-        "image":  "image18.jpg",
+        "image":  "image18.png",
         "retail":  3550,
         "priceMin":  3550,
         "priceMax":  3550,

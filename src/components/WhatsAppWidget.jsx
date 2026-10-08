@@ -169,7 +169,7 @@ export default function WhatsAppWidget({ onBookAppointment }) {
         </div>
         <div style={styles.popupBody}>
           <div style={styles.chatBubble}>
-            Hello! Welcome to Nyahururu Orthopaedic Clinic. How can we help you get the right care today?
+            Welcome to Nyahururu Orthopaedic Clinic. How can we help you get the right care today?
           </div>
 
           {/* New Interactive Section */}
